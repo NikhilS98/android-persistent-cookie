@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(){
 
-        String url ="https://izak10-testing.eastus.cloudapp.azure.com/api/userlogin/login";
+        String url ="https://testing.com/api/userlogin/login";
 
         /*
         If "remember" is not sent or "false" even then the cookie is persisted which is not the
@@ -72,16 +72,14 @@ public class MainActivity extends AppCompatActivity {
         When someone clicks on Logout, the session is automatically deleted at server so not an issue.
          */
         Map<String, String> params = new HashMap<String, String>();
-        params.put("username", "nikhil");
-        params.put("password","nikhil");
+        params.put("username", "admin");
+        params.put("password","admin");
         params.put("remember", "true");
 
         makeStringRequest(url, Request.Method.POST, params);
 
         /*JSONObject params = new JSONObject();
         try {
-            params.put("username", "nikhil");
-            params.put("password","nikhil");
             params.put("Content-Type", "application/json");
         } catch (JSONException e) {
             params = null;
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getMyProfile() {
-        String url = "https://izak10-testing.eastus.cloudapp.azure.com/api/userlogin/getmyprofile";
+        String url = "https://testing.com/api/userlogin/getmyprofile";
         makeStringRequest(url, Request.Method.GET, null);
     }
 

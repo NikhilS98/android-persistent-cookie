@@ -28,7 +28,7 @@ public class PersistentCookieStore implements CookieStore {
         Gson gson = new Gson();
         String json = gson.toJson(cookie);
 
-        //getHost returns the domain so in this case = izak10-testing.eastus.cloudapp.azure.com
+        //getHost returns the domain
         //Log.d("host", uri.getHost());
         prefsEditor.putString(uri.getHost(), json);
         prefsEditor.apply();
@@ -44,16 +44,11 @@ public class PersistentCookieStore implements CookieStore {
 
         List<HttpCookie> cookies = new ArrayList<>();
 
-        /*
-        apparently there's a bug in the CookieManager class so that if a cookie is not found
-        and I return null it causes a NullPointerException. If I initialize and return an empty
-        list that also causes an exception which is why I'm returning a dummy cookie
-        so that it doesn't crash.
-         */
-        if(authCookie == null)
-            authCookie = new HttpCookie("notFound", "notFound");
+       //Read the docs. This method is expected to return an empty list if no cookie found
+        if(authCookie != null){
+            cookies.add(authCookie);
+        }
 
-        cookies.add(authCookie);
         return cookies;
     }
 
